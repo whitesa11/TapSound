@@ -1,0 +1,329 @@
+/* 全体のスタイル */
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(to bottom, #1a365d, #5b21b6);
+  min-height: 100vh;
+  color: white;
+  box-sizing: border-box;
+  overflow-x: hidden; /* 横方向のスクロールを防止 */
+}
+
+.app-title {
+  font-size: 1.5rem; /* モバイル用に小さく */
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: center;
+  width: 100%;
+}
+
+/* メインコンテンツエリア - フレックスコンテナ */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem; /* モバイル用に縮小 */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* コントロールと楽器を含むコンテナ */
+.controls-and-instruments {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+/* コントロールパネル */
+.control-panel {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.control-label {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: white;
+}
+
+.control-select {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  background-color: #6b21a8;
+  color: white;
+  border: none;
+}
+
+/* 鍵盤 */
+.keyboard {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem; /* モバイル用に縮小 */
+  margin-bottom: 1rem;
+  justify-content: center;
+  width: 100%;
+}
+
+.key {
+  width: 2.5rem; /* モバイル用に縮小 */
+  height: 6rem; /* モバイル用に縮小 */
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 0 0 0.5rem 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 0.5rem;
+  font-size: 0.75rem; /* モバイル用に縮小 */
+}
+
+.key-active {
+  border: 3px solid #fde047;
+}
+
+/* ドラムパッド */
+.drum-pads {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem; /* モバイル用に縮小 */
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.drum-pad {
+  width: 100%;
+  height: 4rem; /* モバイル用に縮小 */
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-size: 0.875rem; /* モバイル用に縮小 */
+}
+
+.drum-pad-kick {
+  background-color: #ef4444;
+}
+
+.drum-pad-kick:hover {
+  background-color: #dc2626;
+}
+
+.drum-pad-snare {
+  background-color: #3b82f6;
+}
+
+.drum-pad-snare:hover {
+  background-color: #2563eb;
+}
+
+.drum-pad-hihat {
+  background-color: #10b981;
+}
+
+.drum-pad-hihat:hover {
+  background-color: #059669;
+}
+
+.drum-pad-cymbal {
+  background-color: #f59e0b;
+}
+
+.drum-pad-cymbal:hover {
+  background-color: #d97706;
+}
+
+.drum-pad-active {
+  outline: 3px solid #fde047;
+}
+
+/* エフェクト表示エリアのコンテナ */
+.effect-display-container {
+  width: 100%;
+  min-height: 250px; /* モバイル用に縮小 */
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+/* エフェクト表示エリア */
+.effect-display {
+  position: relative;
+  width: 100%;
+  height: 250px; /* モバイル用に縮小 */
+  min-height: 250px; /* モバイル用に縮小 */
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-sizing: border-box;
+}
+
+.effect-label {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.75rem; /* モバイル用に縮小 */
+}
+
+.effect {
+  position: absolute;
+  opacity: 0.7;
+  transform-origin: center;
+  will-change: transform, opacity; /* パフォーマンス改善 */
+}
+
+.effect-circle {
+  border-radius: 50%;
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.effect-square {
+  transform: rotate(45deg);
+  animation: pulse 1s ease infinite;
+}
+
+.effect-triangle {
+  width: 0;
+  height: 0;
+  animation: bounce 1s ease infinite;
+}
+
+.instruction {
+  color: white;
+  text-align: center;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem; /* モバイル用に縮小 */
+}
+
+/* アニメーション */
+@keyframes ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  75%, 100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px); /* モバイル用に縮小 */
+  }
+}
+
+/* PC用レイアウト */
+@media (min-width: 768px) {
+  .app-title {
+    font-size: 1.875rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .main-content {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  
+  .controls-and-instruments {
+    flex: 1;
+    width: 48%;
+    margin-right: 2%;
+  }
+  
+  .effect-display-container {
+    flex: 1;
+    width: 48%;
+    position: sticky;
+    top: 1rem;
+    min-height: 400px;
+  }
+  
+  .effect-display {
+    height: 350px;
+    min-height: 350px;
+  }
+  
+  .control-panel {
+    margin-bottom: 2rem;
+    padding: 1rem;
+  }
+  
+  .keyboard {
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .key {
+    width: 3rem;
+    height: 8rem;
+    padding-bottom: 1rem;
+    font-size: 1rem;
+  }
+  
+  .drum-pads {
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .drum-pad {
+    height: 6rem;
+    font-size: 1rem;
+  }
+  
+  .instruction {
+    margin-top: 1rem;
+    font-size: 1rem;
+  }
+
+  .effect-label {
+    font-size: 0.875rem;
+  }
+  
+  /* bounceアニメーションのPC用設定 */
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+}
