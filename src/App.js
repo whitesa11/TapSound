@@ -7,7 +7,6 @@ function App() {
   const [activeNote, setActiveNote] = useState(null);
   const [visualEffect, setVisualEffect] = useState('circle');
   const [effects, setEffects] = useState([]);
-  const [isAudioInitialized, setIsAudioInitialized] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   
   // 画面サイズの変更を検知
