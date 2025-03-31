@@ -24,7 +24,6 @@ function App() {
     const initAudio = async () => {
       try {
         await Tone.start();
-        setIsAudioInitialized(true);
         console.log('オーディオ初期化完了');
       } catch (error) {
         console.error('オーディオの初期化に失敗しました:', error);
