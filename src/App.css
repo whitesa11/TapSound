@@ -6,27 +6,33 @@
   justify-content: flex-start;
   width: 100%;
   padding: 1rem;
-  background: linear-gradient(to bottom, #1a365d, #5b21b6);
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
   min-height: 100vh;
   color: white;
   box-sizing: border-box;
-  overflow-x: hidden; /* 横方向のスクロールを防止 */
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .app-title {
-  font-size: 1.5rem; /* モバイル用に小さく */
-  font-weight: bold;
+  font-size: 1.5rem;
+  font-weight: 700;
   margin-bottom: 1rem;
   text-align: center;
   width: 100%;
+  letter-spacing: 0.1em;
+  background: linear-gradient(90deg, #a78bfa, #60a5fa, #34d399);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-/* メインコンテンツエリア - フレックスコンテナ */
+/* メインコンテンツエリア */
 .main-content {
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 1rem; /* モバイル用に縮小 */
+  gap: 1rem;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -42,9 +48,12 @@
 /* コントロールパネル */
 .control-panel {
   margin-bottom: 1rem;
-  padding: 0.75rem;
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   width: 100%;
   box-sizing: border-box;
 }
@@ -52,115 +61,146 @@
 .control-group {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
 }
 
 .control-label {
   display: block;
   margin-bottom: 0.25rem;
-  color: white;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.875rem;
 }
 
 .control-select {
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
-  background-color: #6b21a8;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   color: white;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.control-select:focus {
+  outline: none;
+  border-color: rgba(167, 139, 250, 0.6);
+  background: rgba(255, 255, 255, 0.18);
 }
 
 /* 鍵盤 */
 .keyboard {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.25rem; /* モバイル用に縮小 */
+  gap: 0.375rem;
   margin-bottom: 1rem;
   justify-content: center;
   width: 100%;
 }
 
 .key {
-  width: 2.5rem; /* モバイル用に縮小 */
-  height: 6rem; /* モバイル用に縮小 */
-  background-color: white;
-  color: black;
+  width: calc((100% - 2.625rem) / 8); /* 8キー分を均等割 */
+  min-width: 2.75rem;
+  height: 6rem;
+  background: linear-gradient(180deg, #ffffff, #e2e8f0);
+  color: #1e293b;
   border: none;
-  border-radius: 0 0 0.5rem 0.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 0.625rem 0.625rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), inset 0 -2px 4px rgba(0, 0, 0, 0.05);
   cursor: pointer;
   display: flex;
   align-items: flex-end;
   justify-content: center;
   padding-bottom: 0.5rem;
-  font-size: 0.75rem; /* モバイル用に縮小 */
+  font-size: 0.7rem;
+  font-weight: 600;
+  transition: transform 0.1s, box-shadow 0.1s;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.key:active {
+  transform: scaleY(0.97);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2), inset 0 -1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .key-active {
-  border: 3px solid #fde047;
+  background: linear-gradient(180deg, #fef9c3, #fde047);
+  box-shadow: 0 4px 16px rgba(253, 224, 71, 0.4);
 }
 
 /* ドラムパッド */
 .drum-pads {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem; /* モバイル用に縮小 */
+  gap: 0.625rem;
   margin-bottom: 1rem;
   width: 100%;
 }
 
 .drum-pad {
   width: 100%;
-  height: 4rem; /* モバイル用に縮小 */
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: 4.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   border: none;
   color: white;
-  font-weight: bold;
+  font-weight: 700;
   cursor: pointer;
-  transition: background-color 0.2s;
-  font-size: 0.875rem; /* モバイル用に縮小 */
+  transition: transform 0.1s, box-shadow 0.1s;
+  font-size: 0.875rem;
+  user-select: none;
+  -webkit-user-select: none;
+  letter-spacing: 0.025em;
+}
+
+.drum-pad:active {
+  transform: scale(0.96);
 }
 
 .drum-pad-kick {
-  background-color: #ef4444;
+  background: linear-gradient(135deg, #f43f5e, #e11d48);
 }
 
 .drum-pad-kick:hover {
-  background-color: #dc2626;
+  box-shadow: 0 6px 20px rgba(244, 63, 94, 0.4);
 }
 
 .drum-pad-snare {
-  background-color: #3b82f6;
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
 }
 
 .drum-pad-snare:hover {
-  background-color: #2563eb;
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
 }
 
 .drum-pad-hihat {
-  background-color: #10b981;
+  background: linear-gradient(135deg, #14b8a6, #0d9488);
 }
 
 .drum-pad-hihat:hover {
-  background-color: #059669;
+  box-shadow: 0 6px 20px rgba(20, 184, 166, 0.4);
 }
 
 .drum-pad-cymbal {
-  background-color: #f59e0b;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
 }
 
 .drum-pad-cymbal:hover {
-  background-color: #d97706;
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
 }
 
 .drum-pad-active {
-  outline: 3px solid #fde047;
+  outline: 3px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 2px;
 }
 
 /* エフェクト表示エリアのコンテナ */
 .effect-display-container {
   width: 100%;
-  min-height: 250px; /* モバイル用に縮小 */
+  min-height: 250px;
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
@@ -170,12 +210,14 @@
 .effect-display {
   position: relative;
   width: 100%;
-  height: 250px; /* モバイル用に縮小 */
-  min-height: 250px; /* モバイル用に縮小 */
-  background-color: rgba(0, 0, 0, 0.3);
-  border-radius: 0.5rem;
+  height: 250px;
+  min-height: 250px;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 0.75rem;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   box-sizing: border-box;
 }
 
@@ -183,15 +225,16 @@
   position: absolute;
   top: 0.5rem;
   left: 0.5rem;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.75rem; /* モバイル用に縮小 */
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
 }
 
 .effect {
   position: absolute;
   opacity: 0.7;
   transform-origin: center;
-  will-change: transform, opacity; /* パフォーマンス改善 */
+  will-change: transform, opacity;
 }
 
 .effect-circle {
@@ -211,11 +254,12 @@
 }
 
 .instruction {
-  color: white;
+  color: rgba(255, 255, 255, 0.65);
   text-align: center;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
-  font-size: 0.875rem; /* モバイル用に縮小 */
+  font-size: 0.8rem;
+  line-height: 1.5;
 }
 
 /* アニメーション */
@@ -244,14 +288,18 @@
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-15px); /* モバイル用に縮小 */
+    transform: translateY(-15px);
   }
 }
 
 /* PC用レイアウト */
 @media (min-width: 768px) {
+  .app {
+    padding: 2rem;
+  }
+
   .app-title {
-    font-size: 1.875rem;
+    font-size: 2rem;
     margin-bottom: 1.5rem;
   }
 
@@ -261,63 +309,66 @@
     justify-content: space-between;
     gap: 2rem;
   }
-  
+
   .controls-and-instruments {
     flex: 1;
-    width: 48%;
-    margin-right: 2%;
+    min-width: 0;
   }
-  
+
   .effect-display-container {
     flex: 1;
-    width: 48%;
+    min-width: 0;
     position: sticky;
     top: 1rem;
     min-height: 400px;
   }
-  
+
   .effect-display {
     height: 350px;
     min-height: 350px;
   }
-  
+
   .control-panel {
     margin-bottom: 2rem;
-    padding: 1rem;
+    padding: 1rem 1.25rem;
   }
-  
+
   .keyboard {
     gap: 0.5rem;
     margin-bottom: 2rem;
   }
-  
+
   .key {
-    width: 3rem;
+    width: 3.25rem;
+    min-width: 3.25rem;
     height: 8rem;
     padding-bottom: 1rem;
-    font-size: 1rem;
+    font-size: 0.875rem;
   }
-  
+
+  .key:hover {
+    background: linear-gradient(180deg, #f8fafc, #cbd5e1);
+  }
+
   .drum-pads {
     gap: 1rem;
     margin-bottom: 2rem;
   }
-  
+
   .drum-pad {
     height: 6rem;
     font-size: 1rem;
   }
-  
+
   .instruction {
     margin-top: 1rem;
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   .effect-label {
-    font-size: 0.875rem;
+    font-size: 0.8rem;
   }
-  
-  /* bounceアニメーションのPC用設定 */
+
   @keyframes bounce {
     0%, 100% {
       transform: translateY(0);
